@@ -7,16 +7,36 @@ use Illuminate\Http\Request;
 
 class ArticlesController extends Controller
 {
+    public function index() 
+    {
+        $articles = Article::latest()->get();
+        return view('articles.index', ['articles' => $articles]);
+    }
+    
     public function show($id) 
     {
         $article = Article::find($id);
 
-
         return view('articles.show', ['article' => $article]);
     }
-    public function index() 
+
+    public function create() 
     {
-        $articles = Article::latest()->get();
-        return view('articles', ['articles' => $articles]);
+        return view('articles.create');
     }
+
+    public function store() 
+    {
+        //persisting the new resource
+        $article = new Article();
+
+        $article->title = request('title');
+        $article->body = request('body');
+        $article->excerpt = request('excerpt');
+
+        $article->save();
+
+        return redirect('/articles');
+    }
+    
 }

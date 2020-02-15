@@ -20,6 +20,8 @@ Released   : 20140225
 
 <link href="{{ mix('/css/app.css') }}" rel="stylesheet" type="text/css" media="all" />
 <link href="{{ asset('/css/fonts.css') }}" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css">
+<script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
 
 <!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
 
