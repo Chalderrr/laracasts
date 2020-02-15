@@ -31,13 +31,20 @@ class ArticlesController extends Controller
             'body' => 'required'
         ]);
         //persisting the new resource
-        $article = new Article();
 
-        $article->title = request('title');
-        $article->body = request('body');
-        $article->excerpt = request('excerpt');
+        Article::create([
+            'title' => request('title'),
+            'excerpt' => request('excerpt'),
+            'body' => request('body')
+        ]);
 
-        $article->save();
+        // $article = new Article();
+
+        // $article->title = request('title');
+        // $article->body = request('body');
+        // $article->excerpt = request('excerpt');
+
+        // $article->save();
 
         return redirect('/articles');
     }
