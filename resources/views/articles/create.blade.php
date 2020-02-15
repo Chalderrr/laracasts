@@ -62,6 +62,18 @@
 			</div>
 
 			<div class="field">
+				<label for="body" class="label">Tags</label>
+
+				<div class="control">
+					<select name="tags[]" id=""></select>
+					
+				@error('tags')
+				<p class="help is-danger"> {{ $errors->first('body') }}</p>
+				@enderror
+				</div>
+			</div>
+
+			<div class="field">
 
 				<div class="control">
 					<button type="submit" class="button is-link">Submit</button>
