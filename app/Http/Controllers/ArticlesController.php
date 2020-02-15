@@ -25,14 +25,14 @@ class ArticlesController extends Controller
 
     public function store() 
     {
-        $validated = request()->validate([
+        Article::create(request()->validate([
             'title' => 'required',
             'excerpt' => 'required',
             'body' => 'required'
-        ]);
+        ]));
         //persisting the new resource
 
-        Article::create($validated);
+        // Article::create($validated);
 
         // $article = new Article();
 
