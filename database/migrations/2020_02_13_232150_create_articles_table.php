@@ -17,7 +17,7 @@ class CreateArticlesTable extends Migration
             $table->bigIncrements('id');
             $table->string('title');
             $table->string('excerpt');
-            $table->string('body');
+            $table->longtext('body');
             $table->timestamps();
         });
     }
@@ -32,3 +32,5 @@ class CreateArticlesTable extends Migration
         Schema::dropIfExists('articles');
     }
 }
+
+
