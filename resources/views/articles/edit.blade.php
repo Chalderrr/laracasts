@@ -5,7 +5,9 @@
 <div id="wrapper">
 	<div id="page" class="container">
         
-        <h1 class="title">Update Article</h1>
+        <div class="title">
+            <h2>Update Article</h2>
+        </div>
 
         <form action="/articles/{{ $article->id }}" method="POST">
 
