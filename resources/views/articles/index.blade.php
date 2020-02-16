@@ -8,7 +8,7 @@
         <div id="content">
 
             <ul class="style1">
-                @foreach($articles as $article)
+                @forelse($articles as $article)
                     <li>
                         <h3>
                             <a href="articles/{{ $article->id }}">
@@ -20,8 +20,9 @@
 
                         <p>{{ $article->excerpt }}</p>
                     </li>
-    
-                @endforeach
+                @empty
+                    <p>No relevant articles yet.</p>
+                @endforelse
             </ul>
 
         </div>

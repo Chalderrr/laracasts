@@ -65,10 +65,14 @@
 				<label for="body" class="label">Tags</label>
 
 				<div class="control">
-					<select name="tags[]" id=""></select>
+					<select name="tags[]" id="">
+						@foreach($tags as $tag)
+							<option value="{{$tag->id}}">{{$tag->name}}</option>
+						@endforeach
+					</select>
 					
 				@error('tags')
-				<p class="help is-danger"> {{ $errors->first('body') }}</p>
+					<p class="help is-danger"> {{ $message }}</p>
 				@enderror
 				</div>
 			</div>

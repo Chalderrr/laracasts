@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
 use App\Article;
 use Illuminate\Http\Request;
 
@@ -9,7 +10,13 @@ class ArticlesController extends Controller
 {
     public function index() 
     {
-        $articles = Article::latest()->get();
+        if( request('tag') ) {
+            $articles = Tag::where('name', request('tag'))->firstOrFail()->articles;
+        } else {
+            $articles = Article::latest()->get();
+        }
+        
+
         return view('articles.index', ['articles' => $articles]);
     }
     
@@ -27,11 +34,12 @@ class ArticlesController extends Controller
 
     public function store() 
     {
-        Article::create(request()->validate([
-            'title' => 'required',
-            'excerpt' => 'required',
-            'body' => 'required'
-        ]));
+        $article = new Article($this->validateArticle());
+        $article->user_id = 1;
+        $article->save();
+
+
+        $article->tags()->attach(request('tags'));
         //persisting the new resource
 
         // Article::create($validated);
@@ -44,7 +52,7 @@ class ArticlesController extends Controller
 
         // $article->save();
 
-        return redirect('/articles');
+        return redirect(route('articles.index'));
     }
 
     public function edit(Article $article) 
@@ -55,14 +63,20 @@ class ArticlesController extends Controller
     
     public function update(Article $article) 
     {
-        $article->update(request()->validate([
+        $article->update($this->validateArticle());
+
+        return redirect($article->path());
+
+    }
+
+    protected function validateArticle() 
+    {
+        return request()->validate([
             'title' => 'required',
             'excerpt' => 'required',
-            'body' => 'required'
-        ]));
-
-        return redirect('/articles/' . $article->id);
-
+            'body' => 'required',
+            'tags' => 'exists:tag,id'
+        ]);
     }
     
 }
