@@ -65,7 +65,7 @@
 				<label for="body" class="label">Tags</label>
 
 				<div class="control">
-					<select name="tags[]" id="">
+					<select name="tags[]" id="" multiple>
 						@foreach($tags as $tag)
 							<option value="{{$tag->id}}">{{$tag->name}}</option>
 						@endforeach
