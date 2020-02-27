@@ -41,7 +41,10 @@ class ArticlesController extends Controller
         $article->save();
 
 
-        $article->tags()->attach(request('tags'));
+        if( request()->has('tags') ) {
+            $article->tags()->attach(request('tags'));
+        }
+
         //persisting the new resource
 
         // Article::create($validated);
