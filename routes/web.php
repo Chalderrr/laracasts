@@ -10,15 +10,10 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+
+
 Route::get('/', 'PagesController@home');
-// Route::get('/', function () {
-//     // return view('welcome');
-
-
-//     $example = app()->make(App\Example::class);
-
-//     ddd($example);
-// });
 
 Route::get('/about', function () {
 
