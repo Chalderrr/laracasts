@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Example;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\View;
+use Illuminate\Filesystem\Filesystem;
 
 class PagesController extends Controller
 {
-    public function home(Example $example)
+    public function home(Filesystem $file)
     {
-        ddd($example);
+        // return File::get(public_path('index.php'));
+        return $file->get(public_path('index.php'));
+        // return View::make('welcome');
     }
 }
