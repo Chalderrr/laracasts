@@ -2,9 +2,15 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
 
-class Example extends Model
+class Example
 {
-    //
+    protected $collaborator;
+    
+    public function __construct(Collaborator $collaborator)
+    {
+        $this->collaborator = $collaborator;
+    }
+   
 }
+
