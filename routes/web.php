@@ -12,7 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    // return view('welcome');
+
+    $container = new \App\Container();
+
+    $container->bind('example', function() {
+        return new \App\Example();
+    });
+
+    // ddd($container);
+
+    $example = $container->resolve('example');
+
+    ddd($example);
 });
 
 Route::get('/about', function () {
@@ -28,3 +40,4 @@ Route::get('/articles/create', 'ArticlesController@create');
 Route::get('/articles/{article}', 'ArticlesController@show')->name('articles.show');
 Route::get('/articles/{article}/edit', 'ArticlesController@edit');
 Route::put('/articles/{article}', 'ArticlesController@update');
+
